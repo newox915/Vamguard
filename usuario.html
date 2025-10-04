@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguard | Digital Frontier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        .vanta-bg {
+            position: absolute;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .auth-card {
+            backdrop-filter: blur(16px);
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .input-field {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-100 min-h-screen flex items-center justify-center">
+    <div id="vanta-bg" class="vanta-bg"></div>
+    <div class="content w-full max-w-md px-4 py-8">
+        <div class="text-center mb-10">
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center pulse">
+                    <i data-feather="globe" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <h1 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 mb-2">VANGUARD</h1>
+            <p class="text-gray-400">Digital Frontier Portal</p>
+        </div>
+
+        <div class="auth-card rounded-xl p-8 shadow-xl">
+            <div class="flex justify-between mb-8 border-b border-gray-800">
+                <button id="login-tab" class="pb-2 font-medium text-blue-400 border-b-2 border-blue-500">Login</button>
+                <button id="register-tab" class="pb-2 font-medium text-gray-400">Register</button>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Username</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="user" class="text-gray-500"></i>
+                        </div>
+                        <input type="text" name="username" class="input-field w-full pl-10 pr-3 py-3 rounded-lg" placeholder="newox" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="lock" class="text-gray-500"></i>
+                        </div>
+                        <input type="password" name="password" class="input-field w-full pl-10 pr-3 py-3 rounded-lg" placeholder="newox1" required>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-600 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-300">Remember me</label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-blue-400 hover:text-blue-300">Forgot password?</a>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn-primary w-full py-3 px-4 rounded-lg font-medium text-white">
+                        Sign in
+                    </button>
+                </div>
+            </form>
+
+            <form id="register-form" class="space-y-6 hidden">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">First name</label>
+                        <input type="text" name="first-name" class="input-field w-full px-3 py-3 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Last name</label>
+                        <input type="text" name="last-name" class="input-field w-full px-3 py-3 rounded-lg" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Username</label>
+                    <input type="text" name="username" class="input-field w-full px-3 py-3 rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <input type="email" name="email" class="input-field w-full px-3 py-3 rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                    <input type="password" name="password" class="input-field w-full px-3 py-3 rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
+                    <input type="password" name="confirm-password" class="input-field w-full px-3 py-3 rounded-lg" required>
+                </div>
+                <div>
+                    <button type="submit" class="btn-primary w-full py-3 px-4 rounded-lg font-medium text-white">
+                        Create account
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-800"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-slate-900 text-gray-400">Or continue with</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-3 gap-3">
+                    <div>
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-800 rounded-lg shadow-sm text-sm font-medium text-gray-300 hover:bg-gray-800">
+                            <i data-feather="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-800 rounded-lg shadow-sm text-sm font-medium text-gray-300 hover:bg-gray-800">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-800 rounded-lg shadow-sm text-sm font-medium text-gray-300 hover:bg-gray-800">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Vanta.js
+        VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3b82f6,
+            backgroundColor: 0x0f172a,
+            size: 0.8
+        });
+
+        // Tab switching
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        loginTab.addEventListener('click', () => {
+            loginTab.classList.add('text-blue-400', 'border-b-2', 'border-blue-500');
+            loginTab.classList.remove('text-gray-400');
+            registerTab.classList.add('text-gray-400');
+            registerTab.classList.remove('text-blue-400', 'border-b-2', 'border-blue-500');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        });
+
+        registerTab.addEventListener('click', () => {
+            registerTab.classList.add('text-blue-400', 'border-b-2', 'border-blue-500');
+            registerTab.classList.remove('text-gray-400');
+            loginTab.classList.add('text-gray-400');
+            loginTab.classList.remove('text-blue-400', 'border-b-2', 'border-blue-500');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+
+        // Form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = loginForm.elements['username'].value;
+            const password = loginForm.elements['password'].value;
+            
+            if(username === 'newox' && password === 'newox1') {
+                // Successful login
+                anime({
+                    targets: '.auth-card',
+                    scale: [1, 0.9],
+                    opacity: [1, 0],
+                    duration: 500,
+                    easing: 'easeInOutQuad',
+                    complete: function() {
+                        // Redirect to dashboard
+                        window.location.href = 'dashboard.html';
+                    }
+                });
+            } else {
+                // Failed login
+                anime({
+                    targets: '.input-field',
+                    translateX: [0, -10, 10, -10, 10, 0],
+                    duration: 800,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Registration logic here
+            alert('Registration successful! Please login with your new credentials.');
+            loginTab.click();
+        });
+
+        // Initialize feather icons
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
